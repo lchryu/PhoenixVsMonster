@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Pheonix : MonoBehaviour
+public class Phoenix2 : MonoBehaviour
 {
     [SerializeField] private int speed;
     [SerializeField] private Fire fire;
@@ -23,7 +23,6 @@ public class Pheonix : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-
     }
 
     private void Update()
@@ -32,12 +31,12 @@ public class Pheonix : MonoBehaviour
 
         // Kiểm tra thời gian để phun lửa
         fireTimer += Time.deltaTime;
-        if (Input.GetKey(KeyCode.Space) && fireTimer >= fireCooldown)
+        if (Input.GetKey(KeyCode.End) && fireTimer >= fireCooldown)
         {
             Instantiate(fire, transform.position, Quaternion.identity);
             fireTimer = 0.0f; // Đặt lại thời gian để phun lửa
         }
-        if (Input.GetKey(KeyCode.U) && fireTimer >= fireCooldown)
+        if (Input.GetKey(KeyCode.Home) && fireTimer >= fireCooldown)
         {
             Instantiate(ultimate, transform.position, Quaternion.identity);
             fireTimer = 0.0f; // Đặt lại thời gian để phun lửa
@@ -49,29 +48,30 @@ public class Pheonix : MonoBehaviour
 
     private void Control()
     {
-        // Di chuyển theo các phím được nhấn và giới hạn toạ độ
         float horizontalInput = 0f;
         float verticalInput = 0f;
 
-        if (Input.GetKey(KeyCode.A))
+        // Kiểm tra các phím mũi tên
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             horizontalInput = -1f;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             horizontalInput = 1f;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             verticalInput = -1f;
         }
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.UpArrow))
         {
             verticalInput = 1f;
         }
 
-        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0) * speed * Time.deltaTime;
+        // Di chuyển theo các phím mũi tên và giới hạn toạ độ
+        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0f) * speed * Time.deltaTime;
         transform.Translate(movement);
 
         // Giới hạn toạ độ của chim
@@ -88,7 +88,7 @@ public class Pheonix : MonoBehaviour
         {
             float remainingCooldown = fireCooldown - fireTimer;
             //Debug.Log($"remain cooldown: {remainingCooldown.ToString("F2")}");
-            cooldownText.text = "Cooldown: " + (int)(remainingCooldown * 1000);
+            cooldownText.text = (int)(remainingCooldown * 1000) + " Cooldown";
         }
         else
         {

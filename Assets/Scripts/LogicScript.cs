@@ -24,6 +24,10 @@ public class LogicScript : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }    
+    public void StartGame2Player()
+    {
+        SceneManager.LoadScene(3);
+    }    
     
     public void PlayAgain()
     {
