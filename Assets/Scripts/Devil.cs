@@ -8,6 +8,7 @@ public class Devil : MonoBehaviour
     public float speed = 10;
     public Spear spear;
     float shot = 0;
+
     void Start()
     {
         //spear.speed = speed;

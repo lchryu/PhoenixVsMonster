@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5245266054243043166}
   m_Layer: 0
   m_Name: Spear
-  m_TagString: Untagged
+  m_TagString: Spear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  logic: {fileID: 0}
 --- !u!61 &-8786204407551458824
 BoxCollider2D:
   m_ObjectHideFlags: 0

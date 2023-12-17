@@ -174,4 +174,5 @@ MonoBehaviour:
   speed: 0
   activeTime: 1
   cooldownTime: 0.5
+  addScoreSoundEffect: {fileID: 0}
   logic: {fileID: 0}

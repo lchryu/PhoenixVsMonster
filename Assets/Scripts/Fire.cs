@@ -9,6 +9,7 @@ public class Fire : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float activeTime = 1.0f; // Thời gian lửa được phun
     [SerializeField] private float cooldownTime = 0.5f; // Thời gian nghỉ giữa các lần phun
+    //[SerializeField] private AudioSource addScoreSoundEffect;
 
     public LogicScript logic;
     
@@ -39,6 +40,7 @@ public class Fire : MonoBehaviour
     {
         if (obj.gameObject.CompareTag("quaivat"))
         {
+            logic.PlayAddScroreSoundEffect();
             logic.addScore(3);
             Destroy(obj.gameObject);
             Destroy(this.gameObject);

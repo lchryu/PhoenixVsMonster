@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Pheonix : MonoBehaviour
@@ -15,7 +16,17 @@ public class Pheonix : MonoBehaviour
     private float fireCooldown = 1.0f; // Thời gian giữa các lần phun lửa
     private float fireTimer = 0.0f;
 
-    void Update()
+    private Animator anim;
+    [SerializeField] private AudioSource deathSoundEffect;
+
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+
+    }
+
+    private void Update()
     {
         control();
 
@@ -53,12 +64,32 @@ public class Pheonix : MonoBehaviour
         if (fireTimer < fireCooldown)
         {
             float remainingCooldown = fireCooldown - fireTimer;
-            cooldownText.text = "Cooldown: " + remainingCooldown.ToString("F1") + "s";
-            cooldownText.text = "Đang hồi chiêu! " + remainingCooldown.ToString() + " s";
+            //Debug.Log($"remain cooldown: {remainingCooldown.ToString("F2")}");
+            cooldownText.text = "Cooldown: " + (int)(remainingCooldown * 1000) + "ms";
         }
         else
         {
-            cooldownText.text = "Sẵn sàng";
+            cooldownText.text = "Ready!";
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Spear"))
+        {
+            deathSoundEffect.Play();
+            anim.SetTrigger("phoenixDeathTrigger");
+
+            if (LogicScript.playerScore < 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private void Die()
+    {
+        // chuyển sang màn hình game over
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

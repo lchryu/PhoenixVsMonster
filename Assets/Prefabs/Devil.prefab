@@ -121,8 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c74ec2efb3b21a40a3152c7500083ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 2
   spear: {fileID: 3818721282882051683, guid: cf5e5197cc06ac94f89835fb87cc418e, type: 3}
+  addScoreSoundEffect: {fileID: 0}
 --- !u!61 &7887744835541794434
 BoxCollider2D:
   m_ObjectHideFlags: 0
