@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class Pheonix : MonoBehaviour
 {
     [SerializeField] private int speed;
-    public Fire fire;
+    [SerializeField] private Fire fire;
+    public UltimateScript ultimate;
 
     public Text cooldownText; // Tham chiếu đến UI Text
 
@@ -23,6 +24,11 @@ public class Pheonix : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && fireTimer >= fireCooldown)
         {
             Instantiate(fire, transform.position, Quaternion.identity);
+            fireTimer = 0.0f; // Đặt lại thời gian để phun lửa
+        }
+        if (Input.GetKey(KeyCode.U) && fireTimer >= fireCooldown)
+        {
+            Instantiate(ultimate, transform.position, Quaternion.identity);
             fireTimer = 0.0f; // Đặt lại thời gian để phun lửa
         }
 
